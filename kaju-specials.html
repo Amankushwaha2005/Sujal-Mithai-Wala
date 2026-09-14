@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <!-- KAJU SPECIALS category page. JS: js/pages/category.js -->
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/jpeg" href="public/logo.jpg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sujal Mithai Wala — traditional Indian sweets. Dry fruit ₹1200/kg, medium range ₹500/kg." />
+    <title>Kaju Specials | Sujal Mithai Wala</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@500;600;700&display=swap" rel="stylesheet" />
+    <!-- PAGE STYLES: css/styles.css (headings inside file say which page uses which block) -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body data-script="js/pages/category.js" data-category="Kaju Specials">
+    <div id="root"></div>
+    <!-- React (no Vite). Internet needed for these 3 CDN scripts. -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <!-- Products + phone/address -->
+    <script src="js/data.js"></script>
+    <!-- Header/footer/cart then this page (see js/boot.js) -->
+    <script src="js/boot.js"></script>
+  </body>
+</html>

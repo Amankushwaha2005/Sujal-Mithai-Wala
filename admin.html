@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <!-- ADMIN PANEL — add/delete mithai photos, rates, festival offers, ads -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | Sujal Mithai Wala</title>
+    <link rel="icon" type="image/jpeg" href="public/logo.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-page">
+      <div id="loginBox" class="admin-login">
+        <span class="logo-circle admin-logo">
+          <img src="public/logo.jpg" alt="Sujal Mithai Wala" />
+        </span>
+        <h1>Admin</h1>
+        <p class="sub">Apni email se login kijiye. Mithai photo, rate, offer aur ads yahan se lagte hain.</p>
+        <form id="loginForm" class="admin-form">
+          <label>Admin email <input type="email" name="email" required autocomplete="username" placeholder="amankushwahaauraiya2005@gmail.com" /></label>
+          <label>Password <input type="password" name="password" required autocomplete="current-password" /></label>
+          <button class="btn primary" type="submit">Login</button>
+          <p class="msg" id="loginMsg"></p>
+        </form>
+        <p><a class="auth-link" href="forgot.html">Password bhool gaye?</a></p>
+      </div>
+
+      <div id="dash" class="admin-wrap" hidden>
+        <div class="admin-top">
+          <div class="admin-brand">
+            <span class="logo-circle admin-logo">
+              <img src="public/logo.jpg" alt="Sujal Mithai Wala" />
+            </span>
+            <div>
+              <p class="kicker">SUJAL MITHAI WALA</p>
+              <h1 style="font-size: 36px; margin: 0">Admin panel</h1>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a class="btn ghost" href="index.html">View website</a>
+            <button class="btn ghost" id="logoutBtn" type="button">Logout</button>
+          </div>
+        </div>
+
+        <div class="admin-stats" id="userStats">
+          <article><b id="statTotal">0</b><span>Total users</span></article>
+          <article><b id="statCustomers">0</b><span>Customers</span></article>
+          <article><b id="statAdmins">0</b><span>Admins</span></article>
+        </div>
+
+        <div class="admin-grid">
+          <section class="admin-card">
+            <h2>Website users</h2>
+            <p class="sub">Name, email, role ya password yahan se change kijiye.</p>
+            <p class="msg" id="userMsg"></p>
+            <div id="userList" class="admin-user-list"></div>
+          </section>
+
+          <!-- ADD MITHAI -->
+          <section class="admin-card">
+            <h2>Add mithai (photo + rate)</h2>
+            <form id="addProduct" class="admin-form">
+              <div class="admin-row">
+                <label>Name <input name="name" required placeholder="Kaju Katli" /></label>
+                <label>Category
+                  <input name="category" list="cats" required placeholder="Dry Fruit Sweets" />
+                </label>
+              </div>
+              <datalist id="cats">
+                <option value="Dry Fruit Sweets"></option>
+                <option value="Kaju Specials"></option>
+                <option value="Medium Range"></option>
+                <option value="Special Laddoo"></option>
+                <option value="Bengali Sweets"></option>
+              </datalist>
+              <div class="admin-row">
+                <label>Rate (₹) <input name="price" type="number" min="1" step="1" required placeholder="500" /></label>
+                <label>Sold as
+                  <select name="unit">
+                    <option value="kg">per kg</option>
+                    <option value="piece">per piece</option>
+                    <option value="bowl">per bowl</option>
+                  </select>
+                </label>
+              </div>
+              <label>Description <textarea name="desc" rows="2" placeholder="Fresh, made in desi ghee"></textarea></label>
+              <label>Photo <input name="photo" type="file" accept="image/*" /></label>
+              <button class="btn primary" type="submit">Add to website</button>
+              <p class="msg" id="prodMsg"></p>
+            </form>
+          </section>
+
+          <!-- LIST / RATE / DELETE -->
+          <section class="admin-card">
+            <h2>All mithai — change rate or delete</h2>
+            <p class="sub">Pehle 8 dikhte hain. Baaki ke liye See more dabao.</p>
+            <div id="productList" class="admin-list"></div>
+          </section>
+
+          <!-- FESTIVAL OFFERS -->
+          <section class="admin-card">
+            <h2>Festival offer</h2>
+            <form id="addOffer" class="admin-form">
+              <label>Title <input name="title" required placeholder="Diwali Special" /></label>
+              <label>Message <input name="message" required placeholder="10% extra on dry fruit trays" /></label>
+              <label>Discount % (optional) <input name="discountPercent" type="number" min="0" max="90" placeholder="10" /></label>
+              <button class="btn primary" type="submit">Start offer on website</button>
+              <p class="msg" id="offerMsg"></p>
+            </form>
+            <div id="offerList" class="admin-list"></div>
+          </section>
+
+          <!-- ADS -->
+          <section class="admin-card">
+            <h2>Ads / banners</h2>
+            <form id="addAd" class="admin-form">
+              <label>Ad title <input name="title" required placeholder="Wedding trays ready" /></label>
+              <label>Link <input name="link" placeholder="mithai.html" /></label>
+              <label>Ad photo <input name="photo" type="file" accept="image/*" required /></label>
+              <button class="btn primary" type="submit">Run ad on home page</button>
+              <p class="msg" id="adMsg"></p>
+            </form>
+            <div id="adList" class="admin-list"></div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="js/admin.js"></script>
+  </body>
+</html>
