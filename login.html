@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- LOGIN PAGE — customers + admin (email). JS: js/auth-pages.js -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Sujal Mithai Wala</title>
+    <link rel="icon" type="image/jpeg" href="public/logo.jpg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-page">
+      <div class="admin-login">
+        <p class="kicker">SUJAL MITHAI WALA</p>
+        <h1>Login</h1>
+        <p class="sub">Sign in with your email and password.</p>
+        <form id="authForm" class="admin-form" data-mode="login">
+          <label>Email <input type="email" name="email" required autocomplete="username" /></label>
+          <label>Password <input type="password" name="password" required autocomplete="current-password" /></label>
+          <button class="btn primary" type="submit">Login</button>
+          <p class="msg" id="authMsg"></p>
+        </form>
+        <p><a class="auth-link" href="forgot.html">Forgot password?</a></p>
+        <p><a class="auth-link" href="signup.html">New here? Sign up</a></p>
+        <p><a class="auth-link" href="index.html">← Home</a></p>
+      </div>
+    </div>
+    <script src="js/auth-pages.js"></script>
+  </body>
+</html>

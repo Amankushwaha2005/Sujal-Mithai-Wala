@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- SIGNUP PAGE — new customer accounts in PostgreSQL. JS: js/auth-pages.js -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up | Sujal Mithai Wala</title>
+    <link rel="icon" type="image/jpeg" href="public/logo.jpg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-page">
+      <div class="admin-login">
+        <p class="kicker">SUJAL MITHAI WALA</p>
+        <h1>Sign up</h1>
+        <p class="sub">Create an account to save your orders under your name.</p>
+        <form id="authForm" class="admin-form" data-mode="signup">
+          <label>Name <input name="name" required autocomplete="name" placeholder="Your name" /></label>
+          <label>Email <input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password (6+ characters) <input type="password" name="password" required minlength="6" autocomplete="new-password" /></label>
+          <button class="btn primary" type="submit">Create account</button>
+          <p class="msg" id="authMsg"></p>
+        </form>
+        <p><a class="auth-link" href="login.html">Already have an account? Login</a></p>
+        <p><a class="auth-link" href="forgot.html">Forgot password?</a></p>
+        <p><a class="auth-link" href="index.html">← Home</a></p>
+      </div>
+    </div>
+    <script src="js/auth-pages.js"></script>
+  </body>
+</html>
