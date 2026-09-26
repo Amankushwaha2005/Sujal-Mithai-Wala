@@ -1,6 +1,10 @@
 node_modules
+backend/pgdata/
+backend/pg-wal.txt
 dist
 .DS_Store
 *.local
 backend/pgsql/ 
 backend/pgsql.zip 
+
+sujal-mithai-wala/
