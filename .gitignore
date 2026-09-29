@@ -2,5 +2,7 @@ node_modules
 dist
 .DS_Store
 *.local
-backend/pgsql/ 
-backend/pgsql.zip 
+backend/out
+backend/pgsql
+backend/pgsql.zip
+public/_collage_backup
