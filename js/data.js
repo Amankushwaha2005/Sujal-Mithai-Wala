@@ -13,19 +13,11 @@ SMW.PHONE = "+91 93059 65609";
 SMW.EMAIL = "sujalmithaiwale@gmail.com";
 SMW.ADDRESS =
   "Infront of Kanji House, Tehsil Road, Churkhibal, Jalaun, Uttar Pradesh 285123";
-SMW.MAP_LAT = 26.1407433;
-SMW.MAP_LNG = 79.3353243;
-SMW.MAPS = "https://www.google.com/maps?q=" + SMW.MAP_LAT + "," + SMW.MAP_LNG + "&z=18";
+SMW.MAP_LAT = 26.1398853;
+SMW.MAP_LNG = 79.3349695;
+SMW.MAPS = "https://maps.app.goo.gl/UubJ5SHTrGxJbjnBA";
 SMW.MAP_EMBED =
-  "https://maps.google.com/maps?q=" +
-  SMW.MAP_LAT +
-  "," +
-  SMW.MAP_LNG +
-  "&ll=" +
-  SMW.MAP_LAT +
-  "," +
-  SMW.MAP_LNG +
-  "&z=18&hl=en&t=m&output=embed";
+  "https://maps.google.com/maps?cid=11600620089420313159&z=17&hl=en&output=embed";
 SMW.FREE_DELIVERY_MIN = 200;
 SMW.FREE_DELIVERY_KM = 20;
 SMW.FREE_DELIVERY =

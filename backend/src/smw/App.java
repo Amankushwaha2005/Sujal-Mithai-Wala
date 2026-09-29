@@ -33,8 +33,24 @@ public class App {
   private final String bind;
 
   public static void main(String[] args) throws Exception {
-    Path root = Path.of(args.length > 0 ? args[0] : ".").toAbsolutePath().normalize();
+    Path given = Path.of(args.length > 0 ? args[0] : ".").toAbsolutePath().normalize();
+    Path root = websiteRoot(given);
+    if (!root.equals(given)) {
+      System.out.println("Website root: " + root);
+    }
     new App(root).start();
+  }
+
+  /** Find index.html even when the process is started from the backend folder. */
+  static Path websiteRoot(Path start) {
+    Path cur = start;
+    for (int i = 0; i < 4 && cur != null; i++) {
+      if (Files.isRegularFile(cur.resolve("index.html")) && Files.isDirectory(cur.resolve("public"))) {
+        return cur;
+      }
+      cur = cur.getParent();
+    }
+    return start;
   }
 
   App(Path root) throws Exception {
