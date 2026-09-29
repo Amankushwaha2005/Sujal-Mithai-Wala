@@ -1,0 +1,1393 @@
+/* ============================================================
+   SUJAL MITHAI WALA — MAIN STYLESHEET
+   File: css/styles.css
+   Linked from every HTML page.
+   Sections below say WHICH PAGE / JS FILE uses that CSS.
+   ============================================================ */
+
+/* ============================================================
+   THEME COLOURS + PAGE BACKGROUND
+   Used by: all HTML pages (linked as css/styles.css)
+   ============================================================ */
+:root {
+  --teal: #c9a227;
+  --teal-deep: #12080c;
+  --saffron: #c9a227;
+  --saffron-2: #e4c56a;
+  --rose: #e08a6a;
+  --milk: #140c10;
+  --paper: #24161b;
+  --ink: #f4e7d6;
+  --muted: #c4b09a;
+  --line: rgba(228, 197, 106, 0.22);
+  --shadow:
+    8px 10px 0 rgba(0, 0, 0, 0.45),
+    0 18px 28px rgba(0, 0, 0, 0.4);
+  --bevel:
+    inset 0 1px 0 rgba(255, 230, 180, 0.22),
+    inset 0 -3px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+/* --- Reset: every page --- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  margin: 0;
+  font-family: Nunito, "Noto Sans Devanagari", sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 20% 0%, #3a1a22 0%, transparent 42%),
+    radial-gradient(circle at 100% 30%, #2a1a10 0%, transparent 36%),
+    #12080c;
+}
+
+h1,
+h2,
+h3,
+.brand strong {
+  font-family: Fraunces, "Noto Sans Devanagari", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.page {
+  min-height: 100vh;
+}
+
+section[id] {
+  scroll-margin-top: 92px;
+}
+
+
+/* --- Old festival banner (not shown now) --- */
+.fest-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, #9a2a42 0%, #5c1228 55%, #3a0c1a 100%);
+  color: #fff4d8;
+  font-size: 13px;
+  box-shadow: var(--bevel), 0 8px 0 #1a050a;
+}
+
+.fest-banner p {
+  margin: 0;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fest-banner a {
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.delivery-banner {
+  background: linear-gradient(180deg, #2d6a3a 0%, #163d22 55%, #0e2816 100%);
+  color: #e8f8e4;
+  box-shadow: var(--bevel), 0 8px 0 #07140b;
+}
+
+.delivery-note {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #c8e6b8;
+  font-weight: 700;
+}
+
+
+/* --- Cart drawer close button --- js/shared.js --- */
+.icon-btn {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   HEADER / NAVBAR
+   HTML: all pages  |  JS: js/shared.js -> Header()
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 18px;
+  background: linear-gradient(180deg, #3a2228 0%, #24151a 100%);
+  border-bottom: 2px solid #c9a227;
+  box-shadow: var(--bevel), 0 10px 0 rgba(0, 0, 0, 0.45);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-circle {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  width: 62px;
+  height: 62px;
+  padding: 0;
+  border-radius: 50%;
+  border: 2px solid #e4c56a;
+  background: #1a2430;
+  box-shadow: var(--bevel), 3px 4px 0 #0b0406;
+}
+
+.foot .logo-circle {
+  width: 76px;
+  height: 76px;
+}
+
+.purity .logo-circle {
+  width: 168px;
+  height: 168px;
+  padding: 2px;
+  border-width: 3px;
+}
+
+.logo-circle img,
+.brand .logo-circle img,
+.foot .logo-circle img,
+.purity .logo-circle img {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1.52);
+  transform-origin: center center;
+  justify-self: center;
+  align-self: center;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.brand strong {
+  display: block;
+  font-size: 20px;
+  color: #f3e2b8;
+  line-height: 1;
+  text-shadow: 0 2px 0 #000;
+}
+
+.brand small {
+  color: var(--rose);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.links {
+  display: none;
+  margin-left: auto;
+  gap: 16px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.links a.active {
+  color: #e4c56a;
+  border-bottom: 2px solid #e4c56a;
+  padding-bottom: 2px;
+}
+
+.nav-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.account {
+  position: relative;
+}
+
+.account-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 2px solid #e4c56a;
+  background: linear-gradient(180deg, #4a3036, #2a181c);
+  color: #e4c56a;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: var(--bevel);
+}
+
+.account-drop {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 8px);
+  min-width: 168px;
+  background: linear-gradient(180deg, #3a242a, #1e1216);
+  border: 2px solid #c9a227;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: var(--shadow);
+  z-index: 50;
+  display: grid;
+}
+
+.account-drop a,
+.account-drop button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  background: transparent;
+  color: #f4e7d6;
+  font: inherit;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.account-drop a:hover,
+.account-drop button:hover {
+  background: #2a181c;
+  color: #e4c56a;
+}
+
+.account-drop .auth-name {
+  margin: 0;
+  padding: 8px 12px 4px;
+  max-width: none;
+  color: #e4c56a;
+}
+
+.cart-pill,
+.menu-btn {
+  border: 0;
+  cursor: pointer;
+}
+
+.cart-pill {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  background: linear-gradient(180deg, #b4334c 0%, #6b1428 100%);
+  color: #fff4d8;
+  border-radius: 50%;
+  box-shadow: var(--bevel), 4px 5px 0 #0b0406;
+}
+
+.cart-pill svg {
+  display: block;
+}
+
+.cart-pill b {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: linear-gradient(180deg, #f0d36a, #b8860b);
+  color: #2a1608;
+  border-radius: 999px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 #fff3c4, 0 2px 0 #5a3a00;
+}
+
+.menu-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #4a3036, #2a181c);
+  border: 1px solid #c9a227;
+  color: #f4e7d6;
+  box-shadow: var(--bevel);
+}
+
+.links.open {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 76px;
+  right: 16px;
+  left: 16px;
+  background: linear-gradient(180deg, #3a242a, #1e1216);
+  padding: 16px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 2px solid #c9a227;
+}
+
+
+/* ============================================================
+   HOME HERO + PHOTO SLIDER
+   HTML: index.html  |  JS: js/pages/home.js
+   ============================================================ */
+.hero {
+  width: min(1180px, calc(100% - 32px));
+  margin: 24px auto 0;
+  display: grid;
+  gap: 18px;
+  background: linear-gradient(180deg, #3d242c 0%, #231318 100%);
+  color: var(--ink);
+  border-radius: 28px;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 39, 0.45);
+  box-shadow: var(--bevel), var(--shadow);
+}
+
+.hero::after {
+  display: none;
+}
+
+.hero-copy {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-photo {
+  border-radius: 20px;
+  overflow: hidden;
+  width: min(100%, 600px);
+  height: 420px;
+  margin: 0 auto;
+  background: #12080c;
+  position: relative;
+  box-shadow:
+    inset 0 0 0 2px rgba(201, 162, 39, 0.35),
+    6px 8px 0 rgba(0, 0, 0, 0.5);
+}
+
+.hero-stage,
+.hero-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-stage figure {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.45s ease;
+}
+
+.hero-stage figure.on {
+  opacity: 1;
+  z-index: 1;
+}
+
+.hero-track {
+  display: flex;
+  height: 100%;
+}
+
+.hero-track figure {
+  flex: 0 0 100%;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.hero-caption {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  margin: 0;
+  padding: 8px 12px;
+  background: rgba(12, 6, 8, 0.72);
+  color: #f6e4c0;
+  font-weight: 800;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  z-index: 2;
+}
+
+.hero-photo img,
+.hero-stage img,
+.thumb img {
+  position: static;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  background: #12080c;
+}
+
+.gallery img,
+.ad-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+
+/* --- Category title row on home + mithai --- js/shared.js ProductStrip --- */
+.section-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.see-more-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.eyebrow {
+  display: inline-block;
+  border: 1px solid rgba(201, 162, 39, 0.55);
+  border-radius: 999px;
+  padding: 7px 14px;
+  letter-spacing: 0.14em;
+  font-size: 11px;
+  color: #f0d36a;
+  background: #2a181c;
+  box-shadow: inset 0 1px 0 rgba(255, 230, 180, 0.2), 0 3px 0 #0b0406;
+}
+
+h1 {
+  margin: 14px 0 6px;
+  font-size: clamp(44px, 10vw, 78px);
+  line-height: 0.9;
+  font-weight: 600;
+  color: #fff4e0;
+  text-shadow: 0 3px 0 #000, 0 8px 16px rgba(0, 0, 0, 0.45);
+}
+
+h1 em {
+  display: block;
+  font-style: normal;
+  color: #e4c56a;
+}
+
+.tagline {
+  font-size: clamp(22px, 4vw, 34px);
+  margin: 8px 0 0;
+  color: #f6d7a0;
+}
+
+.hindi {
+  font-family: "Noto Sans Devanagari", sans-serif;
+  color: #e4c56a;
+  font-weight: 700;
+}
+
+.lead {
+  max-width: 540px;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+.hero-cta,
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.btn.primary {
+  background: linear-gradient(180deg, #c94a5e 0%, #6b1428 100%);
+  color: #fff8ea;
+  border-color: #e4c56a;
+  box-shadow: var(--bevel), 0 6px 0 #1a0508;
+}
+
+.btn.ghost {
+  background: linear-gradient(180deg, #3a282c, #24181c);
+  border-color: #c9a227;
+  color: #f0d36a;
+  box-shadow: var(--bevel), 0 5px 0 #0b0406;
+}
+
+.card .btn.ghost {
+  color: #f0d36a;
+  border-color: #c9a227;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.stats {
+  margin-top: 18px;
+}
+
+.stats div {
+  background: linear-gradient(180deg, #3a242a, #1e1216);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 16px;
+  padding: 10px 14px;
+  min-width: 110px;
+  box-shadow: var(--bevel), 4px 5px 0 #0b0406;
+}
+
+.stats strong {
+  display: block;
+  font-size: 26px;
+  color: #e4c56a;
+}
+
+.stats span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+
+/* ============================================================
+   HOME RATE CARDS (₹1200 / ₹500)
+   HTML: index.html  |  JS: js/pages/home.js
+   ============================================================ */
+.rate-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: min(1180px, calc(100% - 32px));
+  margin: 16px auto 0;
+}
+
+.rate-row article {
+  border-radius: 20px;
+  padding: 16px 18px;
+  color: #fff8ea;
+  box-shadow: var(--bevel), 6px 8px 0 #0b0406;
+}
+
+.rate-row article:first-child {
+  background: linear-gradient(180deg, #a8334a 0%, #4c1020 100%);
+}
+
+.rate-row article:last-child {
+  background: linear-gradient(180deg, #d4a017 0%, #7a5a10 100%);
+}
+
+.rate-row b {
+  display: block;
+  font-size: 28px;
+  font-family: Fraunces, serif;
+}
+
+
+/* --- Home scrolling sweet names --- index.html / js/pages/home.js --- */
+.strip {
+  display: flex;
+  gap: 22px;
+  overflow: auto;
+  padding: 14px 20px;
+  margin-top: 8px;
+  color: #e4c56a;
+  font-family: Fraunces, serif;
+  font-size: 24px;
+  text-shadow: 0 2px 0 #000;
+}
+
+/* ============================================================
+   HOME ADS — from admin.html / Java /api/ads
+   ============================================================ */
+.ad-rail {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  width: min(1180px, calc(100% - 32px));
+  margin: 16px auto 0;
+}
+
+.ad-card {
+  display: block;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  box-shadow: var(--bevel), 5px 6px 0 #0b0406;
+  background: #1a1012;
+}
+
+.ad-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.ad-card span {
+  display: block;
+  padding: 8px 12px;
+  font-weight: 800;
+  color: #f6e4c0;
+}
+
+/* --- Page width wrapper --- all inner sections --- */
+.wrap {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0;
+}
+
+.kicker {
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: var(--saffron);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+h2 {
+  margin: 0 0 10px;
+  font-size: clamp(30px, 5vw, 46px);
+  color: #f6e4c0;
+  text-shadow: 0 2px 0 #000;
+}
+
+.sub {
+  color: var(--muted);
+  max-width: 640px;
+  margin-bottom: 24px;
+}
+
+
+/* ============================================================
+   OUR MITHAI — SEARCH + CATEGORY CHIPS
+   HTML: mithai.html  |  JS: js/pages/mithai.js
+   ============================================================ */
+.toolbar input,
+.card label input {
+  width: 100%;
+  border: 1px solid #6a4e28;
+  background: #140c10;
+  color: #f4e7d6;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.55);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+  position: sticky;
+  top: 78px;
+  z-index: 25;
+  background: #140c10;
+  padding: 8px 0;
+}
+
+.chips button,
+.qty button {
+  border: 1px solid #6a4e28;
+  background: linear-gradient(180deg, #3a282e, #1e1418);
+  color: #f4e7d6;
+  border-radius: 12px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: var(--bevel), 0 4px 0 #0b0406;
+}
+
+.chips button.on,
+.qty button.on {
+  background: linear-gradient(180deg, #c94a5e, #6b1428);
+  color: #fff;
+  border-color: #e4c56a;
+}
+
+
+/* ============================================================
+   PRODUCT CARDS + GRID
+   HTML: index.html, mithai.html, category pages
+   JS: js/shared.js -> ProductCard, ProductStrip
+   ============================================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  background: linear-gradient(180deg, #3a262c 0%, #1c1216 100%);
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  border-radius: 8px 8px 22px 22px;
+  overflow: hidden;
+  box-shadow: var(--bevel), var(--shadow);
+  padding-bottom: 14px;
+}
+
+.thumb {
+  position: relative;
+  height: 220px;
+  background: #12080c;
+  overflow: hidden;
+}
+
+.gallery img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.badges {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badges span,
+.thumb em {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.gold {
+  background: var(--saffron-2);
+  color: #4a2a00;
+}
+
+.fest {
+  background: var(--rose);
+  color: #fff;
+}
+
+.thumb em {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  background: #ecfdf3;
+  color: #166534;
+}
+
+.card h3 {
+  margin: 12px 16px 4px;
+  font-size: 24px;
+  color: #f6e4c0;
+}
+
+.price {
+  margin: 0 16px;
+  font-weight: 800;
+  color: #e4c56a;
+}
+
+.live {
+  margin: 4px 16px 0;
+  color: #f0b090;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.price small {
+  margin-left: 6px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.desc {
+  margin: 8px 16px;
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 40px;
+}
+
+.qty {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.card label {
+  display: block;
+  margin: 10px 16px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.add {
+  margin: 4px 16px 0;
+  width: calc(100% - 32px);
+}
+
+
+/* ============================================================
+   ABOUT US + VISIT STORE BACKGROUNDS
+   HTML: about.html, visit.html
+   JS: js/pages/about.js, js/pages/visit.js
+   ============================================================ */
+.about,
+.visit {
+  background: linear-gradient(180deg, rgba(201, 162, 39, 0.08), transparent);
+}
+
+.sub-card {
+  margin-top: 28px;
+  display: grid;
+  gap: 16px;
+  background: linear-gradient(180deg, #3a262c, #1c1216);
+  border: 2px solid #c9a227;
+  border-radius: 24px;
+  padding: 22px;
+  box-shadow: var(--bevel), var(--shadow);
+}
+
+
+.pills span {
+  background: linear-gradient(180deg, #3a282e, #1e1418);
+  border: 1px solid var(--saffron);
+  color: #f0d36a;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  box-shadow: var(--bevel);
+}
+
+
+/* --- About timeline years --- about.html / js/pages/about.js --- */
+.timeline li {
+  background: linear-gradient(180deg, #3a262c, #1c1216);
+  border-left: 5px solid var(--saffron);
+  padding: 16px 18px;
+  border-radius: 12px;
+  box-shadow: var(--bevel), 5px 6px 0 #0b0406;
+}
+
+
+/* ============================================================
+   WHY CHOOSE US + CONTACT CARD
+   HTML: why.html, contact.html
+   JS: js/pages/why.js, js/pages/contact.js
+   ============================================================ */
+.reasons article,
+.quotes blockquote,
+.contact-card {
+  background: linear-gradient(180deg, #3a262c, #1c1216);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 18px;
+  padding: 18px;
+  margin: 0;
+  box-shadow: var(--bevel), 5px 7px 0 #0b0406;
+}
+
+
+/* ============================================================
+   GALLERY PHOTOS
+   HTML: gallery.html  |  JS: js/pages/gallery.js
+   ============================================================ */
+.gallery figure {
+  margin: 0;
+  height: 180px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--bevel), 6px 8px 0 #0b0406;
+}
+
+
+/* --- Contact FAQ --- contact.html / js/pages/contact.js --- */
+.faq details {
+  background: linear-gradient(180deg, #3a262c, #1c1216);
+  border: 1px solid rgba(201, 162, 39, 0.3);
+  border-radius: 14px;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  box-shadow: var(--bevel), 4px 5px 0 #0b0406;
+}
+
+
+/* --- Google map box --- visit.html / js/pages/visit.js --- */
+.map-card {
+  min-height: 280px;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+  box-shadow: var(--bevel), var(--shadow);
+}
+
+
+/* ============================================================
+   FOOTER
+   HTML: all pages  |  JS: js/shared.js -> Footer()
+   ============================================================ */
+.foot {
+  background: linear-gradient(180deg, #2a161c 0%, #0e0709 100%);
+  color: #f6ead8;
+  padding: 40px 0 20px;
+  box-shadow: inset 0 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+
+/* --- Floating WhatsApp button --- all pages / js/shared.js --- */
+.wa-float {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  border-radius: 50%;
+  border: 0;
+  background: #25d366;
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(18, 140, 66, 0.45);
+  cursor: pointer;
+  z-index: 50;
+}
+
+.wa-float svg {
+  flex-shrink: 0;
+}
+
+.wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+/* ============================================================
+   CART DRAWER (Selected Items)
+   HTML: all pages  |  JS: js/shared.js -> CartDrawer()
+   ============================================================ */
+.drawer-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 4, 6, 0.72);
+  z-index: 60;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: min(420px, 100%);
+  background: linear-gradient(180deg, #3a262c, #161012);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-shadow: -10px 0 0 rgba(0, 0, 0, 0.45);
+  border-left: 2px solid #c9a227;
+}
+
+.stepper button {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #c9a227;
+  background: linear-gradient(180deg, #3a282e, #1e1418);
+  color: #f4e7d6;
+  cursor: pointer;
+  box-shadow: var(--bevel);
+}
+
+.purity-inner {
+  display: grid;
+  gap: 20px;
+  align-items: center;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+
+.timeline b {
+  color: #e4c56a;
+}
+
+.reasons,
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.quotes cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.quotes span {
+  display: block;
+  font-weight: 600;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gallery figcaption {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  color: #fff;
+  font-weight: 800;
+  text-shadow: 0 2px 8px #000;
+}
+
+.visit-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.map-card iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  border: 0;
+}
+
+.info {
+  padding: 0;
+  list-style: none;
+}
+
+.info li {
+  margin-bottom: 12px;
+}
+
+.info b,
+.contact-card b {
+  display: block;
+  color: #e4c56a;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+.foot-grid {
+  display: grid;
+  gap: 24px;
+  padding-top: 0;
+}
+
+.foot a,
+.foot p {
+  display: block;
+  color: #e8d5c0;
+  margin: 6px 0;
+}
+
+.mail-link {
+  display: inline !important;
+  color: #e4c56a !important;
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.btn.mail-link {
+  display: inline-flex !important;
+  text-decoration: none;
+  color: inherit !important;
+}
+
+.copy {
+  text-align: center;
+  opacity: 0.7;
+  font-size: 13px;
+}
+
+.copy.credit {
+  margin: 0 0 8px;
+  opacity: 0.9;
+}
+
+.copy.credit a {
+  color: #e4c56a;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.copy.credit a:hover {
+  text-decoration: underline;
+}
+
+.drawer header,
+.drawer footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  overflow: auto;
+  flex: 1;
+}
+
+.cart-list li {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.cart-list img {
+  width: 56px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.empty {
+  color: var(--muted);
+  padding: 20px 0;
+}
+
+
+/* ============================================================
+   DESKTOP LAYOUT (900px+)
+   Used by: all pages
+   ============================================================ */
+@media (min-width: 900px) {
+  .links {
+    display: flex;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  .nav-actions {
+    margin-left: 12px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr 600px;
+    align-items: center;
+    padding: 22px;
+  }
+
+  .hero-photo,
+  .hero-stage,
+  .hero-track,
+  .hero-track figure {
+    width: 600px;
+    height: 480px;
+    min-height: 480px;
+  }
+
+  .purity-inner,
+  .visit-grid,
+  .sub-card,
+  .foot-grid {
+    grid-template-columns: 1.2fr 1fr;
+  }
+
+  .foot-grid {
+    grid-template-columns: 1.4fr 1fr 1.2fr 1fr;
+  }
+}
+
+.shop-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 800;
+  border: 1px solid rgba(201, 162, 39, 0.35);
+}
+
+.shop-status i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c44;
+}
+
+.shop-status.is-open i {
+  background: #3dcc6f;
+  box-shadow: 0 0 8px #3dcc6f;
+}
+
+.shop-status.is-open {
+  color: #b6f0c8;
+  background: rgba(20, 60, 32, 0.55);
+}
+
+.shop-status.is-closed {
+  color: #f0c4c4;
+  background: rgba(60, 16, 20, 0.55);
+}
+
+.live-search {
+  display: grid;
+  gap: 6px;
+  max-width: 420px;
+  margin: 12px 0 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.live-search input {
+  width: 100%;
+  border: 1px solid #6a4e28;
+  background: #140c10;
+  color: #f4e7d6;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(12, 6, 8, 0.72);
+  color: #f6e4c0;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.hero-nav.prev {
+  left: 8px;
+}
+
+.hero-nav.next {
+  right: 8px;
+}
+
+.hero-dots {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 46px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0 48px;
+}
+
+.hero-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  cursor: pointer;
+}
+
+.hero-dots button.on {
+  background: #e4c56a;
+  width: 18px;
+  border-radius: 999px;
+}
+
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  z-index: 80;
+  background: linear-gradient(180deg, #3a262c, #1c1216);
+  color: #f6e4c0;
+  border: 1px solid #e4c56a;
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-weight: 800;
+  box-shadow: var(--shadow);
+}
