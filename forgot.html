@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot password | Sujal Mithai Wala</title>
+    <link rel="icon" type="image/jpeg" href="public/logo.jpg" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/admin.css" />
+  </head>
+  <body>
+    <div class="admin-page">
+      <div class="admin-login">
+        <p class="kicker">SUJAL MITHAI WALA</p>
+        <h1>Forgot password</h1>
+        <p class="sub">Apni email daalo aur naya password set karo. Phir usi se login hoga.</p>
+        <form id="authForm" class="admin-form" data-mode="forgot">
+          <label>Email <input type="email" name="email" required autocomplete="username" /></label>
+          <label>Naya password (6+ letters) <input type="password" name="password" required minlength="6" autocomplete="new-password" /></label>
+          <label>Password dubara <input type="password" name="confirm" required minlength="6" autocomplete="new-password" /></label>
+          <button class="btn primary" type="submit">Password badlo</button>
+          <p class="msg" id="authMsg"></p>
+        </form>
+        <p><a class="auth-link" href="login.html">Wapas login</a></p>
+        <p><a class="auth-link" href="admin.html">Admin login</a></p>
+      </div>
+    </div>
+    <script src="js/auth-pages.js"></script>
+  </body>
+</html>
