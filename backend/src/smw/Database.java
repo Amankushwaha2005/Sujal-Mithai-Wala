@@ -114,7 +114,7 @@ final class Database {
       throw new IllegalArgumentException("Password must be 6+ characters");
     }
     UserRow row = findByEmail(email);
-    if (row == null) throw new IllegalArgumentException("Is email ka account nahi mila");
+    if (row == null) throw new IllegalArgumentException("No account found for this email");
     try (Connection c = connect();
         PreparedStatement ps = c.prepareStatement("UPDATE users SET password_hash = ? WHERE email = ?")) {
       ps.setString(1, Passwords.hash(newPassword));

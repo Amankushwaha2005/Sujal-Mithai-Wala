@@ -22,7 +22,7 @@ document.getElementById("authForm").addEventListener("submit", async (e) => {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.error || "Failed");
-      msg.textContent = "Password badal gaya. Ab login kijiye.";
+      msg.textContent = "Password updated. You can log in now.";
       setTimeout(() => {
         window.location.href = "login.html";
       }, 800);

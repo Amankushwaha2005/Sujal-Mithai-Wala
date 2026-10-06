@@ -123,7 +123,7 @@ public class App {
         String pass = body.has("password") ? body.get("password").getAsString() : "";
         String confirm = body.has("confirm") ? body.get("confirm").getAsString() : "";
         if (!pass.equals(confirm)) {
-          error(ex, 400, "Dono password same hone chahiye");
+          error(ex, 400, "Both passwords must match");
           return;
         }
         db.resetPassword(body.has("email") ? body.get("email").getAsString() : "", pass);
@@ -239,6 +239,34 @@ public class App {
         else error(ex, 404, "Ad not found");
         return;
       }
+      if (path.equals("/api/gallery") && "POST".equals(method)) {
+        if (!isAdmin(ex)) {
+          error(ex, 401, "Admin login required");
+          return;
+        }
+        sendJson(ex, 200, createGallery(ex));
+        return;
+      }
+      if (path.startsWith("/api/gallery/") && "PUT".equals(method)) {
+        if (!isAdmin(ex)) {
+          error(ex, 401, "Admin login required");
+          return;
+        }
+        String id = path.substring("/api/gallery/".length());
+        if (updateGallery(ex, id)) sendJson(ex, 200, store.catalog());
+        else error(ex, 404, "Photo not found");
+        return;
+      }
+      if (path.startsWith("/api/gallery/") && "DELETE".equals(method)) {
+        if (!isAdmin(ex)) {
+          error(ex, 401, "Admin login required");
+          return;
+        }
+        String id = path.substring("/api/gallery/".length());
+        if (store.deleteGallery(id)) sendJson(ex, 200, store.catalog());
+        else error(ex, 404, "Photo not found");
+        return;
+      }
       error(ex, 404, "Unknown API");
     } catch (IllegalArgumentException e) {
       error(ex, 400, e.getMessage());
@@ -293,6 +321,46 @@ public class App {
     if (!a.has("id")) a.addProperty("id", Store.newId("ad"));
     if (!a.has("active")) a.addProperty("active", true);
     return store.addAd(a);
+  }
+
+  private JsonObject createGallery(HttpExchange ex) throws Exception {
+    String ct = header(ex, "Content-Type");
+    if (ct == null || !ct.toLowerCase().startsWith("multipart/")) {
+      throw new IllegalArgumentException("Photo required");
+    }
+    Multipart mp = Multipart.parse(readBytes(ex), ct);
+    if (mp.file == null || mp.file.length == 0) throw new IllegalArgumentException("Photo required");
+    String label = mp.fields.getOrDefault("label", "").trim();
+    if (label.isBlank()) throw new IllegalArgumentException("Photo name required");
+    JsonObject g = new JsonObject();
+    g.addProperty("id", Store.newId("gal"));
+    g.addProperty("label", label);
+    g.addProperty("tag", blankTo(mp.fields.get("tag"), "Medium Range"));
+    g.addProperty("image", saveUpload(mp.fileName, mp.file));
+    return store.addGallery(g);
+  }
+
+  private boolean updateGallery(HttpExchange ex, String id) throws Exception {
+    String ct = header(ex, "Content-Type");
+    JsonObject patch = new JsonObject();
+    if (ct != null && ct.toLowerCase().startsWith("multipart/")) {
+      Multipart mp = Multipart.parse(readBytes(ex), ct);
+      String label = mp.fields.getOrDefault("label", "").trim();
+      if (!label.isBlank()) patch.addProperty("label", label);
+      String tag = mp.fields.get("tag");
+      if (tag != null && !tag.isBlank()) patch.addProperty("tag", tag.trim());
+      if (mp.file != null && mp.file.length > 0) {
+        patch.addProperty("image", saveUpload(mp.fileName, mp.file));
+      }
+    } else {
+      patch = readJson(ex);
+    }
+    if (patch.size() == 0) throw new IllegalArgumentException("Nothing to update");
+    return store.updateGallery(id, patch);
+  }
+
+  private static String blankTo(String value, String fallback) {
+    return value == null || value.isBlank() ? fallback : value.trim();
   }
 
   private void applyQty(JsonObject p, String unit) {

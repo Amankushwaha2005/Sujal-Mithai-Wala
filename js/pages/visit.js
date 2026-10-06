@@ -30,9 +30,7 @@ function VisitPage() {
               </li>
               <li>
                 <b>Opening Hours</b>
-                Monday – Saturday: 8:00 AM – 10:00 PM
-                <br />
-                Sunday: 8:00 AM – 11:00 PM
+                Monday – Sunday: 8:00 AM – 11:00 PM
                 <br />
                 Festival Days: Open till late
               </li>

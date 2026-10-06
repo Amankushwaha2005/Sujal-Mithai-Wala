@@ -1391,5 +1391,79 @@
     }
   ],
   "offers": [],
-  "ads": []
+  "ads": [],
+  "gallery": [
+    {
+      "id": "gal-19624272",
+      "image": "public/mithai/peda.png",
+      "tag": "Medium Range",
+      "label": "Peda"
+    },
+    {
+      "id": "gal-97a34eb2",
+      "image": "public/mithai/milkcake.png",
+      "tag": "Medium Range",
+      "label": "Milkcake"
+    },
+    {
+      "id": "gal-61080f59",
+      "image": "public/mithai/gujia.png",
+      "tag": "Festival",
+      "label": "Gujia"
+    },
+    {
+      "id": "gal-c4486de3",
+      "image": "public/mithai/soan-papdi.png",
+      "tag": "Medium Range",
+      "label": "Soan Papdi"
+    },
+    {
+      "id": "gal-26bc1ebc",
+      "image": "public/mithai/punjabi-pinni.png",
+      "tag": "Medium Range",
+      "label": "Punjabi Pinni"
+    },
+    {
+      "id": "gal-cfac8401",
+      "image": "public/dryfruit/kaju-katli.png",
+      "tag": "Dry Fruit",
+      "label": "Kaju Katli"
+    },
+    {
+      "id": "gal-f0400b88",
+      "image": "public/dryfruit/pista-bite.png",
+      "tag": "Dry Fruit",
+      "label": "Pista Bite"
+    },
+    {
+      "id": "gal-05603981",
+      "image": "public/dryfruit/kaju-kalash.png",
+      "tag": "Kaju Specials",
+      "label": "Kaju Kalash"
+    },
+    {
+      "id": "gal-342b8fbd",
+      "image": "public/mithai/khoya-apple.png",
+      "tag": "Festival",
+      "label": "Khoya Apple"
+    },
+    {
+      "id": "gal-f8db2e42",
+      "image": "public/laddoo/special-motichoor-laddoo.png",
+      "tag": "Special Laddoo",
+      "label": "Motichoor Laddoo"
+    },
+    {
+      "id": "gal-883ac7fb",
+      "image": "public/bengali/rasmalai.png",
+      "tag": "Bengali Sweets",
+      "label": "Rasmalai"
+    },
+    {
+      "id": "gal-400cbc9e",
+      "image": "public/bengali/cham-cham.png",
+      "tag": "Bengali Sweets",
+      "label": "Cham-cham"
+    }
+  ]
 }

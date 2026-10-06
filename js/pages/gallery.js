@@ -7,6 +7,10 @@
 function GalleryPage() {
   const [galleryTag, setGalleryTag] = useState("All");
   const [openGallery, setOpenGallery] = useState(false);
+  const filters = ["All"].concat(
+    SMW.galleryFilters.filter((g) => g !== "All"),
+    SMW.gallery.map((g) => g.tag).filter((t, i, a) => t && SMW.galleryFilters.indexOf(t) < 0 && a.indexOf(t) === i)
+  );
   const gals = SMW.gallery.filter((g) => galleryTag === "All" || g.tag === galleryTag);
 
   return (
@@ -16,7 +20,7 @@ function GalleryPage() {
         <h2>A Look Inside Our Shop</h2>
         <p className="sub">Our counters, our kitchen and the mithai that leaves every day.</p>
         <div className="chips">
-          {SMW.galleryFilters.map((g) => (
+          {filters.map((g) => (
             <button
               key={g}
               className={galleryTag === g ? "on" : ""}
@@ -31,7 +35,7 @@ function GalleryPage() {
         </div>
         <div className="gallery">
           {(openGallery ? gals : gals.slice(0, PREVIEW)).map((g) => (
-            <figure key={g.src + g.label}>
+            <figure key={g.id || g.src}>
               <img
                 src={g.src}
                 alt={g.label}

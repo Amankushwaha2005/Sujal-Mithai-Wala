@@ -32,6 +32,11 @@
         }
         SMW.offers = cat.offers || [];
         SMW.ads = cat.ads || [];
+        if (cat.gallery && cat.gallery.length) {
+          SMW.gallery = cat.gallery.map(function (g) {
+            return { id: g.id, src: g.image, tag: g.tag || "Medium Range", label: g.label || "Photo" };
+          });
+        }
       }
     } catch (e) {
       SMW.offers = SMW.offers || [];

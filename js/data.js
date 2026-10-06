@@ -21,7 +21,7 @@ SMW.MAP_EMBED =
 SMW.FREE_DELIVERY_MIN = 200;
 SMW.FREE_DELIVERY_KM = 20;
 SMW.FREE_DELIVERY =
-  "🎉 FREE DELIVERY — Get free delivery on orders of ₹200 or more within a 20 KM range.";
+  "🎉 FREE DELIVERY";
 
 SMW.kgQty = ["250 g", "500 g", "750 g", "1 kg", "1.5 kg", "2 kg", "3 kg", "5 kg"];
 SMW.pieceQty = ["1 piece", "2 pieces", "4 pieces", "6 pieces", "12 pieces"];

@@ -102,6 +102,25 @@ document.getElementById("addOffer").addEventListener("submit", async (e) => {
   }
 });
 
+document.getElementById("addGallery").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = document.getElementById("galleryMsg");
+  msg.textContent = "Saving…";
+  try {
+    const form = e.target;
+    const fd = new FormData();
+    fd.append("label", form.label.value);
+    fd.append("tag", form.tag.value);
+    fd.append("photo", form.photo.files[0]);
+    await api("/api/gallery", { method: "POST", body: fd });
+    form.reset();
+    msg.textContent = "Photo gallery mein add ho gayi.";
+    await loadAll();
+  } catch (err) {
+    msg.textContent = err.message;
+  }
+});
+
 document.getElementById("addAd").addEventListener("submit", async (e) => {
   e.preventDefault();
   const msg = document.getElementById("adMsg");
@@ -125,6 +144,7 @@ async function loadAll() {
   renderProducts(cat.products || []);
   renderOffers(cat.offers || []);
   renderAds(cat.ads || []);
+  renderGallery(cat.gallery || []);
   const users = await api("/api/users");
   renderUsers(users);
 }
@@ -343,6 +363,52 @@ function renderOffers(list) {
     btn.onclick = async () => {
       if (!confirm("Offer hataayein?")) return;
       await api("/api/offers/" + encodeURIComponent(btn.getAttribute("data-del")), { method: "DELETE" });
+      await loadAll();
+    };
+  });
+}
+
+function renderGallery(list) {
+  const box = document.getElementById("galleryList");
+  const tags = ["Medium Range", "Dry Fruit", "Kaju Specials", "Special Laddoo", "Bengali Sweets", "Festival"];
+  box.innerHTML = list
+    .map((g) => {
+      const options = tags
+        .concat(tags.indexOf(g.tag) < 0 && g.tag ? [g.tag] : [])
+        .map((t) => `<option ${t === g.tag ? "selected" : ""}>${escapeHtml(t)}</option>`)
+        .join("");
+      return `
+    <article class="admin-item" data-id="${escapeHtml(g.id)}">
+      <img src="${escapeHtml(g.image)}" alt="" />
+      <div>
+        <input class="gal-label" value="${escapeHtml(g.label || "")}" />
+        <select class="gal-tag">${options}</select>
+        <label class="gal-file">Change photo <input class="gal-photo" type="file" accept="image/*" /></label>
+      </div>
+      <div class="acts">
+        <button class="btn ghost save-gal" type="button">Save</button>
+        <button class="btn ghost del-gal" type="button">Delete</button>
+      </div>
+    </article>`;
+    })
+    .join("");
+  box.querySelectorAll(".save-gal").forEach((btn) => {
+    btn.onclick = async () => {
+      const row = btn.closest(".admin-item");
+      const fd = new FormData();
+      fd.append("label", row.querySelector(".gal-label").value);
+      fd.append("tag", row.querySelector(".gal-tag").value);
+      const file = row.querySelector(".gal-photo").files[0];
+      if (file) fd.append("photo", file);
+      await api("/api/gallery/" + encodeURIComponent(row.dataset.id), { method: "PUT", body: fd });
+      await loadAll();
+    };
+  });
+  box.querySelectorAll(".del-gal").forEach((btn) => {
+    btn.onclick = async () => {
+      const row = btn.closest(".admin-item");
+      if (!confirm("Is photo ko gallery se hataayein?")) return;
+      await api("/api/gallery/" + encodeURIComponent(row.dataset.id), { method: "DELETE" });
       await loadAll();
     };
   });

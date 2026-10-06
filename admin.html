@@ -114,6 +114,29 @@
             <div id="offerList" class="admin-list"></div>
           </section>
 
+          <!-- GALLERY -->
+          <section class="admin-card">
+            <h2>Gallery photos</h2>
+            <p class="sub">Yahan se gallery page ki photo add, change ya delete hoti hai.</p>
+            <form id="addGallery" class="admin-form">
+              <label>Photo name <input name="label" required placeholder="Peda" /></label>
+              <label>Category
+                <select name="tag">
+                  <option>Medium Range</option>
+                  <option>Dry Fruit</option>
+                  <option>Kaju Specials</option>
+                  <option>Special Laddoo</option>
+                  <option>Bengali Sweets</option>
+                  <option>Festival</option>
+                </select>
+              </label>
+              <label>Photo <input name="photo" type="file" accept="image/*" required /></label>
+              <button class="btn primary" type="submit">Add to gallery</button>
+              <p class="msg" id="galleryMsg"></p>
+            </form>
+            <div id="galleryList" class="admin-list"></div>
+          </section>
+
           <!-- ADS -->
           <section class="admin-card">
             <h2>Ads / banners</h2>

@@ -35,6 +35,8 @@ final class Store {
     ensureArray("products");
     ensureArray("offers");
     ensureArray("ads");
+    ensureArray("gallery");
+    seedGallery();
     if (Files.exists(configFile)) {
       JsonObject cfg = gson.fromJson(Files.readString(configFile, StandardCharsets.UTF_8), JsonObject.class);
       password = cfg.get("password").getAsString();
@@ -123,6 +125,48 @@ final class Store {
 
   synchronized boolean deleteAd(String id) throws Exception {
     return deleteItem("ads", id);
+  }
+
+  synchronized JsonObject addGallery(JsonObject g) throws Exception {
+    catalog.getAsJsonArray("gallery").add(g);
+    save();
+    return g;
+  }
+
+  synchronized boolean updateGallery(String id, JsonObject patch) throws Exception {
+    return patchItem("gallery", id, patch);
+  }
+
+  synchronized boolean deleteGallery(String id) throws Exception {
+    return deleteItem("gallery", id);
+  }
+
+  private void seedGallery() throws Exception {
+    JsonArray arr = catalog.getAsJsonArray("gallery");
+    if (arr.size() > 0) return;
+    String[][] rows = {
+      {"public/mithai/peda.png", "Medium Range", "Peda"},
+      {"public/mithai/milkcake.png", "Medium Range", "Milkcake"},
+      {"public/mithai/gujia.png", "Festival", "Gujia"},
+      {"public/mithai/soan-papdi.png", "Medium Range", "Soan Papdi"},
+      {"public/mithai/punjabi-pinni.png", "Medium Range", "Punjabi Pinni"},
+      {"public/dryfruit/kaju-katli.png", "Dry Fruit", "Kaju Katli"},
+      {"public/dryfruit/pista-bite.png", "Dry Fruit", "Pista Bite"},
+      {"public/dryfruit/kaju-kalash.png", "Kaju Specials", "Kaju Kalash"},
+      {"public/mithai/khoya-apple.png", "Festival", "Khoya Apple"},
+      {"public/laddoo/special-motichoor-laddoo.png", "Special Laddoo", "Motichoor Laddoo"},
+      {"public/bengali/rasmalai.png", "Bengali Sweets", "Rasmalai"},
+      {"public/bengali/cham-cham.png", "Bengali Sweets", "Cham-cham"}
+    };
+    for (String[] row : rows) {
+      JsonObject o = new JsonObject();
+      o.addProperty("id", newId("gal"));
+      o.addProperty("image", row[0]);
+      o.addProperty("tag", row[1]);
+      o.addProperty("label", row[2]);
+      arr.add(o);
+    }
+    save();
   }
 
   static String newId(String prefix) {

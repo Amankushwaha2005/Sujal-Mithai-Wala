@@ -63,7 +63,7 @@ function formatInr(n) {
 function shopIsOpen(now) {
   const d = now || new Date();
   const h = d.getHours() + d.getMinutes() / 60;
-  const close = d.getDay() === 0 ? 23 : 22;
+  const close = 23;
   return h >= 8 && h < close;
 }
 
@@ -289,8 +289,7 @@ function Footer() {
         </div>
         <div>
           <h4>Opening Hours</h4>
-          <p>Monday – Saturday 8:00 AM – 10:00 PM</p>
-          <p>Sunday 8:00 AM – 11:00 PM</p>
+          <p>Monday – Sunday 8:00 AM – 11:00 PM</p>
           <p>Festival Days Open till late</p>
         </div>
       </div>
@@ -339,9 +338,9 @@ function CartDrawer({ open, cart, setCart, onClose }) {
     const lines = cartItems.map((x) => `• ${x.product.name} — ${x.qty} × ${x.count} (${formatInr(x.line)})`);
     const delivery =
       total >= SMW.FREE_DELIVERY_MIN
-        ? `\nFree delivery: yes (order ₹${SMW.FREE_DELIVERY_MIN}+, within ${SMW.FREE_DELIVERY_KM} km)`
-        : `\nFree delivery: add ₹${Math.round(SMW.FREE_DELIVERY_MIN - total)} more (within ${SMW.FREE_DELIVERY_KM} km)`;
-    const msg = `Namaste Sujal Mithai Wala 🙏\n\nMera order:\n${lines.join("\n")}\n\nEstimated total: ${formatInr(total)}${delivery}\n\nPlease confirm availability.`;
+        ? `\nFree delivery: yes`
+        : `\nFree delivery: add ₹${Math.round(SMW.FREE_DELIVERY_MIN - total)} more`;
+    const msg = `Namaste Sujal Mithai Wala 🙏\n\nMy order:\n${lines.join("\n")}\n\nEstimated total: ${formatInr(total)}${delivery}\n\nPlease confirm availability.`;
     window.open(waLink(msg), "_blank");
   }
 
@@ -380,8 +379,8 @@ function CartDrawer({ open, cart, setCart, onClose }) {
             </p>
             <p className="delivery-note">
               {total >= SMW.FREE_DELIVERY_MIN
-                ? `🎉 Free delivery on this order (within ${SMW.FREE_DELIVERY_KM} km).`
-                : `Add ${formatInr(SMW.FREE_DELIVERY_MIN - total)} more for free delivery within ${SMW.FREE_DELIVERY_KM} km.`}
+                ? `🎉 Free delivery on this order.`
+                : `Add ${formatInr(SMW.FREE_DELIVERY_MIN - total)} more for free delivery.`}
             </p>
             <button className="btn primary" onClick={whatsappOrder}>
               Send list on WhatsApp
@@ -528,7 +527,7 @@ function AppShell({ pageId, children }) {
       return;
     }
     const lines = cartItems.map((x) => `• ${x.product.name} — ${x.qty} × ${x.count} (${formatInr(x.line)})`);
-    const msg = `Namaste Sujal Mithai Wala 🙏\n\nMera order:\n${lines.join("\n")}\n\nEstimated total: ${formatInr(total)}\n\nPlease confirm availability.`;
+    const msg = `Namaste Sujal Mithai Wala 🙏\n\nMy order:\n${lines.join("\n")}\n\nEstimated total: ${formatInr(total)}\n\nPlease confirm availability.`;
     window.open(waLink(msg), "_blank");
   }
 

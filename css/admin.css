@@ -276,7 +276,25 @@
   margin-top: 16px;
 }
 
-.admin-item {
+.admin-item .gal-label,
+.admin-item .gal-tag,
+.admin-item .gal-photo {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid #6a4e28;
+  background: #140c10;
+  color: #f4e7d6;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font: inherit;
+}
+
+.admin-item .gal-file {
+  display: block;
+  margin-top: 6px;
+  color: #d7c4a3;
+  font-size: 12px;
+}
   display: grid;
   grid-template-columns: 64px 1fr auto;
   gap: 10px;
