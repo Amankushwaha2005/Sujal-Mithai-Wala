@@ -6,20 +6,7 @@
    ============================================================ */
 
 function HomePage() {
-  const [slide, setSlide] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [query, setQuery] = useState("");
-  const slides = (() => {
-    const seen = {};
-    const out = [];
-    const ranked = SMW.products.slice().sort((a, b) => (b.bestseller ? 1 : 0) - (a.bestseller ? 1 : 0));
-    ranked.forEach((p) => {
-      if (!p.image || seen[p.image] || out.length >= 8) return;
-      seen[p.image] = true;
-      out.push({ src: p.image, name: p.name, id: p.id });
-    });
-    return out;
-  })();
   const cats = SMW.categories.filter((c) => c !== "All");
   const q = query.trim().toLowerCase();
   const hits = !q
@@ -30,14 +17,6 @@ function HomePage() {
           (p.desc || "").toLowerCase().includes(q) ||
           (p.category || "").toLowerCase().includes(q)
       );
-
-  useEffect(() => {
-    if (!slides.length || paused) return;
-    const t = setInterval(() => setSlide((i) => (i + 1) % slides.length), 3000);
-    return () => clearInterval(t);
-  }, [slides.length, paused]);
-
-  const hero = slides[slide] || slides[0];
 
   return (
     <AppShell pageId="home">
@@ -95,48 +74,20 @@ function HomePage() {
                 </div>
               </div>
             </div>
-            <div className="hero-photo" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+            <div className="hero-photo">
               <div className="hero-stage">
-                {slides.map((s, i) => (
-                  <figure key={s.id} className={i === slide ? "on" : ""}>
-                    <img
-                      src={s.src}
-                      alt={s.name}
-                      onError={(e) => {
-                        e.currentTarget.src = LOGO;
-                      }}
-                    />
-                  </figure>
-                ))}
-              </div>
-              <button
-                className="hero-nav prev"
-                type="button"
-                aria-label="Previous photo"
-                onClick={() => setSlide((i) => (i - 1 + slides.length) % slides.length)}
-              >
-                ‹
-              </button>
-              <button
-                className="hero-nav next"
-                type="button"
-                aria-label="Next photo"
-                onClick={() => setSlide((i) => (i + 1) % slides.length)}
-              >
-                ›
-              </button>
-              <p className="hero-caption">{hero ? hero.name : ""}</p>
-              <div className="hero-dots">
-                {slides.map((s, i) => (
-                  <button
-                    key={s.id}
-                    type="button"
-                    className={i === slide ? "on" : ""}
-                    aria-label={s.name}
-                    onClick={() => setSlide(i)}
+                <figure className="on">
+                  <img
+                    src="public/shop-sign.jpg"
+                    alt="Sujal Mithai Wala"
+                    style={{ objectFit: "contain", objectPosition: "center center" }}
+                    onError={(e) => {
+                      e.currentTarget.src = LOGO;
+                    }}
                   />
-                ))}
+                </figure>
               </div>
+              <p className="hero-caption">Sujal Mithai Wala</p>
             </div>
           </section>
 
